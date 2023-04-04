@@ -29,7 +29,6 @@ public class Server {
 
         System.out.println("Server listening on port " + port);
 
-        while (true) {
             Socket clientSocket = serverSocket.accept();
             System.out.println("Connected to client " + clientSocket.getRemoteSocketAddress());
 
@@ -45,6 +44,6 @@ public class Server {
                 String message = "Player1: " + inputLine + ", Player2: " + player2Choice + ", Result: " + result;
                 out.println(message);
             }
-        }
+
     }
 }

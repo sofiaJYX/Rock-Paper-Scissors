@@ -18,6 +18,11 @@ public class main {
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         ) {
+            // Get the server IP and port
+            InetSocketAddress serverAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
+            System.out.println("Connected to server IP: " + serverAddress.getAddress().getHostAddress());
+            System.out.println("Connected to server port: " + serverAddress.getPort());
+
             Scanner scanner = new Scanner(System.in);
             while (true) {
                 System.out.print("Enter ROCK, PAPER or SCISSORS (or QUIT to exit): ");
