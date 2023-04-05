@@ -2,23 +2,32 @@ import java.io.*;
 import java.net.*;
 import java.util.Random;
 
+//this game server is created to listen for connections from clients and interact with them
 public class Server {
 
-    public static String gameResult(String player1Choice, String player2Choice) {
-        if (player1Choice.equals(player2Choice)) {
+    /**
+     * This method is used to check the result of the game.
+     *
+     * @param player1Choice Player 1's turn.
+     * @param player2Choice Player 2's turn.
+     * @return A string representing the game result.
+     */
+    public static String gameResult(String p1Turn, String p2Turn) {
+        if (p1Turn.equals(p2Turn)) {
             return "TIE";
         } else if (
-                (player1Choice.equals("ROCK") && player2Choice.equals("SCISSORS")) ||
-                        (player1Choice.equals("SCISSORS") && player2Choice.equals("PAPER")) ||
-                        (player1Choice.equals("PAPER") && player2Choice.equals("ROCK"))
+                (p1Turn.equals("ROCK") && p2Turn.equals("SCISSORS")) ||
+                        (p1Turn.equals("SCISSORS") && p2Turn.equals("PAPER")) ||
+                        (p1Turn.equals("PAPER") && p2Turn.equals("ROCK"))
         ) {
-            return "PLAYER1_WINS";
+            return "P1_WIN";
         } else {
-            return "PLAYER2_WINS";
+            return "P2_WIN";
         }
     }
 
     public static void main(String[] args) throws IOException {
+        // Check if it is the correct number
         if (args.length != 1) {
             System.err.println("Usage: java Server <port>");
             System.exit(1);
@@ -37,6 +46,7 @@ public class Server {
 
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
+                // Randomly select an option for the server
                 String[] choices = {"ROCK", "PAPER", "SCISSORS"};
                 String player2Choice = choices[new Random().nextInt(choices.length)];
 
